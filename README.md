@@ -1,2 +1,2 @@
 # Extract_variants
-Script to extract variants meeting customisable criteria (VEP consequence, gene list) from VCFs 
+Script to extract variants from VCFs when they meet customisable criteria (VEP consequence, gene list)
