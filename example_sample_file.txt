@@ -1,0 +1,3 @@
+Participant	VCF ## Header optional
+ID101	/path/to/vcf/ID101.vcf.gz
+ID102	/path/to/vcf/ID102.vcf.gz

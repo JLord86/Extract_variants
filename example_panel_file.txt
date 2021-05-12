@@ -1,0 +1,3 @@
+ID101	/path/to/panels/folder/DDG2P.tsv
+ID101	/path/to/panels/folder/Intellectual disability.tsv
+ID102	/path/to/panels/folder/Retinal disorders.tsv
