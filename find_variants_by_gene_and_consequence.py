@@ -3,6 +3,8 @@
 ## --samples: Tab separated list of "ID	vcf location" - should include full path to VCFs (see example_sample_file.txt)
 ## --panels: Tab separated list of "ID	panel name" - should include full paths to panels files (see example_panel_file.txt)
 ## --genes: List of other genes of interest - just a list of gene names, one per line (see example_gene_file.txt)
+## example running command:
+## python find_variants_by_gene_and_consequence.py --samples example_sample_file.txt --panels example_panel_file.txt --genes example_gene_file.txt
 
 import gzip
 import os
@@ -102,7 +104,7 @@ for line in infile_samples:
 								format = get_format(Words[8]) ## allows it to pull out the DP from the genotype field
 								get_DP = Words[9].split(':')
 								DP = get_DP[format["DP"]] 
-								if int(DP) < 6: continue 
+								if int(DP) < 6: continue ## check the depth is at least 5 reads (can be changed)
 								## Store the ID and variant to prevent duplicates in the output
 								ID_var = '-'.join((words[0], Words[0], Words[1], Words[3], Words[4]))
 								if ID_var in tracking: continue ## Skips any entries that have already been stored/output
