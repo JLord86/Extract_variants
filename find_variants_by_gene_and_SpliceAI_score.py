@@ -23,15 +23,6 @@ infile_samples = open(args.samples)
 Outfile = ''.join((args.samples, "_variants_out_SpliceAI.txt")) ## output will be named after the samples file specified with _variants_out_SpliceAI.txt appended
 outfile = open(Outfile, 'w')
 
-def get_format(format_string):
-    """ figure out the format of the sample columns, map data to position
-    Args:
-        format_string: text from format column of VCF, colon separated string
-    """
-    format = format_string.split(":")
-    format = dict(zip(format, range(0, len(format))))
-    return(format)
-
 
 ## Go through the SpliceAI files and store variants in genes of interest with SpliceAI scores >= 0.2 (can be customised)
 gene_dict = {} 
@@ -99,9 +90,8 @@ for line in infile_samples:
 			if Words[9].startswith('0/0'): continue ## Skip anything where the proband doesn't actually have a variant here
 			variant = '-'.join((Words[0], Words[1], Words[3], Words[4]))
 			if variant not in SAI_dict: continue
-			format = get_format(Words[8]) ## allows it to pull out the DP from the genotype field
 			get_DP = Words[9].split(':')
-			DP = get_DP[format["DP"]] 
+			DP = get_DP[3] ## NB this will need to be changed if DP is not always in this position
 			if int(DP) < 6: continue ## check the depth is at least 5 reads (can be changed)
 			outline = ''.join((ID, '\t', Line, '\t', SAI_dict[variant], '\n'))
 			outfile.write(outline)
