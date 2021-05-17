@@ -33,6 +33,7 @@ for line in gene_panel:
 	words = line.split('\t')
 	if len(words) <14: continue ## skip lines missing info (added to address an error where some files had incomplete lines)
 	if words[1] != "gene": continue ## skip non-gene entries 
+	if "Expert Review Green" not in words[3]: continue ## Skip unconfirmed/low confidence genes
 	if words[7].startswith("MONOALLELIC") or words[7].startswith("BOTH") or words[7].startswith("BIALLELIC"): ## this can be modified depending on the type of genes you want to include
 		gene_dict[words[2]] = 0
 
